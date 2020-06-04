@@ -1,0 +1,6 @@
+---
+name: KomugiJoinQuitMessage
+main: komugidev\komugijq\Main
+version: 1.6.0
+api: 3.0.0
+...
