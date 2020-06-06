@@ -33,7 +33,7 @@ class Join implements Listener
         $prefix2 = Join::PREFIX_NewJoin;
         $player = $event->getPlayer();
         $name = $player->getName();
-        if(!$event->getPlayer()->hasPlayedBefore()){
+        if($event->getPlayer()->hasPlayedBefore()){
             $event->setJoinMessage($prefix2.$name."さんが初めて鯖に来ました\nみなさん！挨拶をしましょう！");
             if ($player->isOP()){
                 switch ($name){
@@ -41,14 +41,13 @@ class Join implements Listener
                     $event->setJoinMessage($prefix."鯖主のxtakumatutixさんが鯖に来ました");
                     break;
 
-                    case 'default':
+                    case "default":
                     $event->setJoinMessage($prefix."開発者の".$name."さんが鯖に来ました");
                     break;
                 }
+            }else{
+                $event->setJoinMessage($prefix.$name."さんが鯖に来ました");
             }
-        }else{
-            $event->setJoinMessage($prefix.$name."さんが鯖に来ました");
-            return true;
         }
     }
 }

@@ -34,7 +34,7 @@ class Quit implements Listener
             $event->setQuitMessage($prefix.$name."さんがサーバーを去りました <timeout>");
             break;
 
-            case 'default':
+            case "default":
             $event->setQuitMessage($prefix.$name."さんがサーバーを去りました <その他>");
             break;
         }
