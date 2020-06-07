@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace komugidev\komugijq;
 
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
-use pocketmine\Player;
 
-class Quit implements Listener 
+class Quit implements Listener
 {
 
     /** @var string */
-    public const PREFIX_Quit = '§8 >> [§7Quit§8]§r ';
+    public const PREFIX_QUIT = '§8 >> [§7Quit§8]§r ';
 
+    /** @var Main */
     private $Main;
 
     public function __construct(Main $Main)
@@ -21,22 +23,22 @@ class Quit implements Listener
 
     public function onQuit(PlayerQuitEvent $event)
     {
-        $prefix = Quit::PREFIX_Quit;
+        $prefix = Quit::PREFIX_QUIT;
         $player = $event->getPlayer();
         $name = $player->getName();
         $reason = $event->getQuitReason();
-        switch ($reason){
+        switch ($reason) {
             case 'client disconnect':
-            $event->setQuitMessage($prefix.$name."さんがサーバーを去りました");
-            break;
+                $event->setQuitMessage($prefix . $name . "さんがサーバーを去りました");
+                break;
 
             case 'timeout':
-            $event->setQuitMessage($prefix.$name."さんがサーバーを去りました <timeout>");
-            break;
+                $event->setQuitMessage($prefix . $name . "さんがサーバーを去りました <timeout>");
+                break;
 
-            case "default":
-            $event->setQuitMessage($prefix.$name."さんがサーバーを去りました <その他>");
-            break;
+            default:
+                $event->setQuitMessage($prefix . $name . "さんがサーバーを去りました <その他>");
+                break;
         }
     }
 }
